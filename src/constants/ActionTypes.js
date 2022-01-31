@@ -1,0 +1,7 @@
+export const TEST_FUNCTION = 'TEST_FUNCTION';
+export const AUTH_USER_TRUE = 'AUTH_USER_TRUE';
+export const AUTH_USER_FALSE = 'AUTH_USER_FALSE';
+export const GET_ALL_EMPLOYEES = 'GET_ALL_EMPLOYEES';
+export const DUMP_ALL_EMPLOYEES = 'DUMP_ALL_EMPLOYEES';
+export const GET_ALL_VANS = 'GET_ALL_VANS';
+export const DUMP_ALL_VANS = 'DUMP_ALL_VANS';

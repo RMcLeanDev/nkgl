@@ -3,7 +3,9 @@ import firebase from 'firebase/compat/app';
 import "firebase/compat/auth";
 import SignUp from './SignUp';
 
-function SignIn(){
+function SignIn(props){
+
+    //<h3 onClick={() => {setSignUp(true)}} className="signUpButton">Create account?</h3>
 
     const [error, setError] = useState(null);
     const [signUp, setSignUp] = useState(false);
@@ -36,7 +38,7 @@ function SignIn(){
                     <button type="submit">Sign in</button>
                     <p>{error}</p>
                 </form>
-                <h3 onClick={() => {setSignUp(true)}} className="signUpButton">Create account?</h3>
+                <button onClick={() => props.close()}>Cancel</button>
             </div>
         </div>;
     }

@@ -5,8 +5,10 @@ import Home from './Home';
 import { Switch, Route } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Header from './Header';
-import SignIn from './SignIn';
 import Uniforms from './Authenticated/Uniforms/UniformsMain';
+import UnauthenticatedMain from './Unauthenticated/UnauthenticatedMain';
+import OrderUniform from './Unauthenticated/OrderUniform';
+import UnauthHeader from './Unauthenticated/UnauthHeader';
 
 function App(props) {
 
@@ -21,10 +23,13 @@ function App(props) {
       <Route component={Error404}/>
     </Switch></div>
   } else if (props.authUser === false) {
-    display = <div><Switch>
-    <Route exact path ='/' component={SignIn}/>
-    <Route component={Error404}/>
-  </Switch></div>
+    display = <div>
+      <UnauthHeader />
+      <Switch>
+        <Route exact path ='/' component={UnauthenticatedMain}/>
+        <Route exact path ='/orderUniform' component={OrderUniform}/>
+        <Route component={Error404}/>
+      </Switch></div>
   } else {
     display = 
     <div className="loader"><img src={require('../assets/images/loading.gif')}/></div>

@@ -62,9 +62,7 @@ function Header(props){
     if(windowSize.width >=1001){
       display = <div className="header">
         <NavLink exact to='/' activeClassName="active"><h3>Home</h3></NavLink>
-        <NavLink to='/employees' activeClassName="active"><h3>Employees</h3></NavLink>
-        <NavLink to='/vanlist' activeClassName="active"><h3>Van List</h3></NavLink>
-        <NavLink to='/payReport' activeClassName="active"><h3>Pay Report</h3></NavLink>
+        <NavLink to='/uniforms' activeClassName="active"><h3>Uniforms</h3></NavLink>
         <button onClick={signOut}>Log Out</button>
       </div>;
     } else if(windowSize.width < 1001){
@@ -81,9 +79,7 @@ function Header(props){
         </div>
         <div className={headerDisplay.menu}>
           <NavLink exact to='/' onClick={() => setShowHide(false)}><h3>Home</h3></NavLink>
-          <NavLink to='/employees' onClick={() => setShowHide(false)}><h3>Employees</h3></NavLink>
-          <NavLink to='/vanlist' onClick={() => setShowHide(false)}><h3>Van List</h3></NavLink>
-          <NavLink to='/payReport' onClick={() => setShowHide(false)}><h3>Pay Report</h3></NavLink>
+          <NavLink to='/uniforms' onClick={() => setShowHide(false)}><h3>Uniforms</h3></NavLink>
           <button onClick={signOut}>Log Out</button>
         </div>
     </div>;

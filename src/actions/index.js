@@ -13,25 +13,15 @@ console.log(firebase.database())
 firebase.auth().onAuthStateChanged(function(user) {
   if(user){
     store.dispatch(authUserTrue());
-    firebase.database().ref("employees").orderByChild("name").on('value', function(snapshot) {
+    firebase.database().ref("uniforms").on('value', function(snapshot) {
       let list = []
       snapshot.forEach(function(child){
         list.push(child.val())
       })
-      store.dispatch(getAllEmployees(list))
-    })
-    firebase.database().ref("vanList").orderByChild("name").on('value', function(snapshot) {
-      let list = []
-      snapshot.forEach(function(child){
-        let van = child.val()
-        list.push(van)
-      })
-      store.dispatch(getAllVans(list))
+     store.dispatch(getInventoryList(snapshot.val()))
     })
   } else {
     store.dispatch(authUserFalse());
-    store.dispatch(dumpAllEmployees())
-    store.dispatch(dumpAllVans());
   }
 })
 
@@ -47,20 +37,25 @@ export const authUserFalse = () => ({
   type: types.AUTH_USER_FALSE
 })
 
-export const getAllEmployees = (information) => ({
-  type: types.GET_ALL_EMPLOYEES,
-  information
+export const getInventoryList = (info) => ({
+  type: types.GET_INVENTORY_LIST,
+  info
 })
 
-export const dumpAllEmployees = () => ({
-  type: types.DUMP_ALL_EMPLOYEES
-})
+// export const getAllEmployees = (information) => ({
+//   type: types.GET_ALL_EMPLOYEES,
+//   information
+// })
 
-export const getAllVans = (information) => ({
-  type: types.GET_ALL_VANS,
-  information
-})
+// export const dumpAllEmployees = () => ({
+//   type: types.DUMP_ALL_EMPLOYEES
+// })
 
-export const dumpAllVans = () => ({
-  type: types.DUMP_ALL_VANS
-})
+// export const getAllVans = (information) => ({
+//   type: types.GET_ALL_VANS,
+//   information
+// })
+
+// export const dumpAllVans = () => ({
+//   type: types.DUMP_ALL_VANS
+// })

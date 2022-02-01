@@ -6,12 +6,9 @@ import { Switch, Route } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Header from './Header';
 import SignIn from './SignIn';
+import Uniforms from './Authenticated/UniformsMain';
 
 function App(props) {
-
-  console.log(props)
-
-  // <div className="loader"><img src={require('../assets/images/loading.gif')}/></div>
 
   let display;
 
@@ -20,6 +17,7 @@ function App(props) {
     <Header history={props.history}/>
     <Switch>
       <Route exact path ='/' component={Home}/>
+      <Route exact path ='/uniforms' component={Uniforms}/>
       <Route component={Error404}/>
     </Switch></div>
   } else if (props.authUser === false) {

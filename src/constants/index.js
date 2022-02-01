@@ -1,5 +1,5 @@
 import * as types from './ActionTypes';
-import {initialState, authState, employeesState, vanState} from './InitialState';
+import {initialState, authState, employeesState, vanState, inventoryState} from './InitialState';
 import firebaseConfig from './firebaseConfig';
 
 export default {
@@ -8,5 +8,6 @@ export default {
   employeesState: employeesState,
   vanState: vanState,
   authState: authState,
+  inventoryState: inventoryState,
   types: types
 }

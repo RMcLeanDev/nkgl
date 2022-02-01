@@ -3,16 +3,23 @@ import '../../scss/OrderUniform.scss';
 
 function OrderUniform(){
 
-    function submitOrder(e){
-        e.preventDefault();
-    }
-
+    
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [vin, setVin] = useState("");
     const [status, setStatus] = useState("Active")
     const [rental, setRental] = useState("No")
     const [error, setError] = useState()
+    
+    function submitOrder(e){
+        e.preventDefault();
+        let lowerCaseEmail = email.toLowerCase();
+        if(lowerCaseEmail.includes("nkg")){
+            console.log("yes nkg");
+        } else {
+            console.log("no nkg");
+        }
+    }
 
     return(
         <div className="orderContainer">
@@ -29,7 +36,7 @@ function OrderUniform(){
                         type="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
-                        placeholder = "Email"
+                        placeholder = "Work Email"
                     />
                     <button type="submit" style={{"margin-top": "10px"}}>Confirm</button>
                     {error}

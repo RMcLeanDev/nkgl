@@ -6,6 +6,8 @@
         display: flex;
         justify-content: space-around;
         width: 100%;
+        border-top: 2px solid black;
+        border-bottom: 2px solid black;
         button{
             width: 50%;
             font-size: 25px;
@@ -13,7 +15,6 @@
             border: none;
             background-color: white;
             padding: 10px;
-            border-top: 10px;
         }
         .active{
             background-color: teal;

@@ -2,4 +2,21 @@
     background-color: white;
     width: 95vw;
     margin: auto;
+    .tabs{
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        button{
+            width: 50%;
+            font-size: 25px;
+            font-weight: bold;
+            border: none;
+            background-color: white;
+            padding: 10px;
+            border-top: 10px;
+        }
+        .active{
+            background-color: teal;
+        }
+    }
 }

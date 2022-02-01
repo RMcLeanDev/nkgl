@@ -6,7 +6,7 @@ import { Switch, Route } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Header from './Header';
 import SignIn from './SignIn';
-import Uniforms from './Authenticated/UniformsMain';
+import Uniforms from './Authenticated/Uniforms/UniformsMain';
 
 function App(props) {
 

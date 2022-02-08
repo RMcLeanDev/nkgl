@@ -4,25 +4,22 @@ import "firebase/compat/auth";
 import "firebase/compat/database";
 import {store} from './../index';
 
+let authState;
+
 const {types, firebaseConfig} = constants;
 
 firebase.initializeApp(firebaseConfig);
 
-console.log(firebase.database())
-
 firebase.auth().onAuthStateChanged(function(user) {
   if(user){
     store.dispatch(authUserTrue());
-    firebase.database().ref("uniforms").on('value', function(snapshot) {
-      let list = []
-      snapshot.forEach(function(child){
-        list.push(child.val())
-      })
-     store.dispatch(getInventoryList(snapshot.val()))
-    })
   } else {
     store.dispatch(authUserFalse());
   }
+})
+
+firebase.database().ref("uniforms").on('value', function(snapshot) {
+  store.dispatch(getInventoryList(snapshot.val()))
 })
 
 export const testFunction = () => ({

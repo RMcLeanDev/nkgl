@@ -3,9 +3,11 @@ import '../../scss/OrderUniform.scss';
 import ExtraUniformItems from './ExtraUniformItems';
 import FemaleSizes from './FemaleSizes';
 import MaleSizes from './MaleSizes';
+import {connect} from 'react-redux';
 
-function OrderUniform(){
+function OrderUniform(props){
 
+    console.log(props)
     
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -85,4 +87,8 @@ function OrderUniform(){
     )
 }
 
-export default OrderUniform;
+const mapStateToProps = state => ({
+    invent: state.inventoryState
+  })
+
+export default connect(mapStateToProps)(OrderUniform);

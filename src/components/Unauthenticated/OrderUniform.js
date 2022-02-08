@@ -7,8 +7,6 @@ import {connect} from 'react-redux';
 
 function OrderUniform(props){
 
-    console.log(props)
-    
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [options, setOptions] = useState("extras");
@@ -21,7 +19,7 @@ function OrderUniform(props){
     } else if(options === "female"){
         displayOptions = <FemaleSizes />
     } else if (options === "male"){
-        displayOptions = <MaleSizes />
+        displayOptions = <MaleSizes inventory={props.invent.inventory.male}/>
     }
     
     function submitOrder(e){

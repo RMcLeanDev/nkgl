@@ -31,12 +31,14 @@ function OrderUniform(){
                         value={name}
                         onChange={e => setName(e.target.value)}
                         placeholder = "Name"
+                        required
                     />
                     <input 
                         type="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         placeholder = "Work Email"
+                        required
                     />
                     <button type="submit" style={{"margin-top": "10px"}}>Confirm</button>
                     {error}

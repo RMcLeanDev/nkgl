@@ -27,7 +27,7 @@ function App(props) {
       <UnauthHeader />
       <Switch>
         <Route exact path ='/' component={UnauthenticatedMain}/>
-        <Route exact path ='/orderUniform' component={OrderUniform}/>
+        <Route exact path ='/uniforms' component={OrderUniform}/>
         <Route component={Error404}/>
       </Switch></div>
   } else {

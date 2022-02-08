@@ -9,10 +9,18 @@ function OrderUniform(){
     
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [diffOptions, setOptions] = useState("male");
+    const [options, setOptions] = useState("extras");
     const [error, setError] = useState()
 
     let displayOptions;
+
+    if(options === "extras"){
+        displayOptions = <ExtraUniformItems />
+    } else if(options === "female"){
+        displayOptions = <FemaleSizes />
+    } else if (options === "male"){
+        displayOptions = <MaleSizes />
+    }
     
     function submitOrder(e){
         e.preventDefault();
@@ -58,8 +66,9 @@ function OrderUniform(){
                         placeholder = "Work Email"
                         required
                     />
+                    <hr/>
                     <div>
-                        <select value={diffOptions} onChange={e => setOptions(e.target.value)}>
+                        <select value={options} onChange={e => setOptions(e.target.value)}>
                             <option value="male">Male Sizes</option>
                             <option value="female">Female Sizes</option>
                             <option value="extras">Extras</option>

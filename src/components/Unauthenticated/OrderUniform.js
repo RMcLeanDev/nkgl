@@ -7,7 +7,8 @@ import {connect} from 'react-redux';
 
 function OrderUniform(props){
 
-    const [name, setName] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [options, setOptions] = useState("extras");
     const [error, setError] = useState()
@@ -41,8 +42,8 @@ function OrderUniform(props){
                     <br/>
                     <input 
                         type="text"
-                        value={name}
-                        onChange={e => setName(e.target.value)}
+                        value={firstName}
+                        onChange={e => setFirstName(e.target.value)}
                         placeholder = "First Name"
                         required
                     />
@@ -51,8 +52,8 @@ function OrderUniform(props){
                     <br/>
                     <input 
                         type="text"
-                        value={name}
-                        onChange={e => setName(e.target.value)}
+                        value={lastName}
+                        onChange={e => setLastName(e.target.value)}
                         placeholder = "Last Name"
                         required
                     />

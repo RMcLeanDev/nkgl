@@ -7,11 +7,25 @@ import {connect} from 'react-redux';
 
 function OrderUniform(props){
 
+    const [order, addOrder]= useState({'total': 0, 'items': {}});
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [options, setOptions] = useState("extras");
     const [error, setError] = useState()
+
+    console.log(order)
+
+    function pushToOrder(e){
+        order.total += 1;
+        if(order.items[e.uniqueID]){
+            order.items[e.uniqueID].quantity += 1;
+        } else {
+            order.items[e.uniqueID] = e;
+            order.items[e.uniqueID].quantity = 1;
+        }
+        console.log(order);
+    }
 
     let displayOptions;
 
@@ -20,7 +34,7 @@ function OrderUniform(props){
     } else if(options === "female"){
         displayOptions = <FemaleSizes />
     } else if (options === "male"){
-        displayOptions = <MaleSizes inventory={props.invent.inventory.male}/>
+        displayOptions = <MaleSizes addToOrder={pushToOrder} inventory={props.invent.inventory.male}/>
     }
     
     function submitOrder(e){

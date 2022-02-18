@@ -1,8 +1,6 @@
 import React from "react";
 
 function MaleSizes(props){
-
-    console.log(props.inventory.shirts)
     
     return(
         <div>
@@ -11,6 +9,7 @@ function MaleSizes(props){
                 let item = props.inventory.shirts[items];
                 return <div>
                         <h1>{item.size}</h1>
+                        <button onClick={() => props.addToOrder(item)}>Add to Order</button>
                     </div>
             })}
         </div>

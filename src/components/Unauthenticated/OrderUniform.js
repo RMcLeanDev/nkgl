@@ -9,7 +9,7 @@ function OrderUniform(props){
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const [options, setOptions] = useState("extras");
+    const [options, setOptions] = useState("extra");
     const [error, setError] = useState()
 
     console.log(order)

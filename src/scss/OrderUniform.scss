@@ -22,13 +22,11 @@
         width: 75%;
         border: 2px solid teal;
         margin: auto;
-        button{
-            background-color: rgba(0,0,0,0.1);
-            width: 100%;
-            border: none;
-            border-top: 1px solid teal;
-            color: black;
-            font-weight: bold;
+        box-shadow: 0 0 0 black;
+        transition: 0.5s linear;
+        &:hover{
+            cursor: pointer;
+            box-shadow: 0 0 10px teal;
         }
     }
 }

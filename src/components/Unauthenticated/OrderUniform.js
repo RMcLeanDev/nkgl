@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 import '../../scss/OrderUniform.scss';
-import ExtraUniformItems from './ExtraUniformItems';
-import FemaleSizes from './FemaleSizes';
-import MaleSizes from './MaleSizes';
+import ViewUniformItems from './ViewUniformItems';
 import {connect} from 'react-redux';
 
 function OrderUniform(props){
 
-    const [order, addOrder]= useState({'total': 0, 'items': {}});
+    let order = {'total': 0, 'items': {}};
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -25,16 +23,6 @@ function OrderUniform(props){
             order.items[e.uniqueID].quantity = 1;
         }
         console.log(order);
-    }
-
-    let displayOptions;
-
-    if(options === "extras"){
-        displayOptions = <ExtraUniformItems />
-    } else if(options === "female"){
-        displayOptions = <FemaleSizes />
-    } else if (options === "male"){
-        displayOptions = <MaleSizes addToOrder={pushToOrder} inventory={props.invent.inventory.male}/>
     }
     
     function submitOrder(e){
@@ -86,11 +74,11 @@ function OrderUniform(props){
                         <select value={options} onChange={e => setOptions(e.target.value)}>
                             <option value="male">Male Sizes</option>
                             <option value="female">Female Sizes</option>
-                            <option value="extras">Extras</option>
+                            <option value="extra">Extra</option>
                         </select>
                     </div>
                     <div>
-                        {displayOptions}
+                        <ViewUniformItems addToOrder={pushToOrder} inventory={props.invent.inventory[options]}/>
                     </div>
                     <button type="submit" style={{"margin-top": "10px"}}>Confirm</button>
                     {error}

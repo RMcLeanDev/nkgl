@@ -72,7 +72,7 @@ function UnauthHeader(){
         display = <div className="header">
           <NavLink exact to='/' activeClassName="active"><h3>Home</h3></NavLink>
           <NavLink to='/uniforms' activeClassName="active"><h3>Uniforms</h3></NavLink>
-          <button onClick={showLogin}>Sign In</button>
+          <button onClick={showLogin} className="signIn">Sign In</button>
         </div>;
       } else if(windowSize.width < 800){
         display = <div className="headerMbl">

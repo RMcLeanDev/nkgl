@@ -16,7 +16,7 @@ function ViewUniformItems(props){
             <div className="uniformItemsContainer">
                 {Object.keys(props.inventory).map(descriptions => {
                     let description = props.inventory[descriptions]
-                    return <div className="uniformItems" key={description.description}>
+                    return <div className="uniformItems" key={description.description} onClick={() => setUniform(description)}>
                             <img className="itemImage" src={require('../../assets/images/tshirt.png')}/>
                             <h1>{description.description}</h1>
                         </div>

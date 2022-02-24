@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import ViewSizes from './ViewSizes';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 function ViewUniformItems(props){
 
@@ -8,10 +9,10 @@ function ViewUniformItems(props){
 
     if(uniform){
         viewSizes = <ViewSizes item={uniform} close={setUniform}/>
-        document.getElementsByTagName("body")[0].style = "position: fixed; width: 100vw;";
+        disableBodyScroll(document)
     } else {
         viewSizes = null;
-        document.getElementsByTagName("body")[0].style = "position: none";
+        enableBodyScroll(document)
     }
 
     return(

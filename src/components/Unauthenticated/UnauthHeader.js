@@ -68,13 +68,13 @@ function UnauthHeader(){
   
     const windowSize = useWindowSize();
     if(windowSize){
-      if(windowSize.width >=1001){
+      if(windowSize.width >=800){
         display = <div className="header">
           <NavLink exact to='/' activeClassName="active"><h3>Home</h3></NavLink>
           <NavLink to='/uniforms' activeClassName="active"><h3>Uniforms</h3></NavLink>
           <button onClick={showLogin}>Sign In</button>
         </div>;
-      } else if(windowSize.width < 1001){
+      } else if(windowSize.width < 800){
         display = <div className="headerMbl">
           <div className="showHide">
             <div onClick={toggleNav} id="nav-icon2" className={headerDisplay.header}>

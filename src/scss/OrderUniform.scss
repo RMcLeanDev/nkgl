@@ -19,14 +19,20 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     .uniformItems{
-        width: 75%;
-        border: 2px solid teal;
-        margin: auto;
+        position: relative;
+        width: 100%;
+        background-color: white;
         box-shadow: 0 0 0 black;
         transition: 0.5s linear;
+        border: 2px solid teal;
+        margin-left: -2px;
         &:hover{
             cursor: pointer;
             box-shadow: 0 0 10px teal;
+        }
+        img{
+            margin-top: 10px;
+            max-width: 50%;
         }
     }
 }

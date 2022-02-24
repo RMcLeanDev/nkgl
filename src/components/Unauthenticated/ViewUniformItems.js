@@ -1,16 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
+import ViewSizes from './ViewSizes';
 
 function ViewUniformItems(props){
 
-    console.log(props)
+    const [uniform, setUniform] = useState(null);
+
+    if(uniform){
+        console.log(uniform)
+    } else {
+        console.log(uniform)
+    }
 
     return(
         <div>
             <div className="uniformItemsContainer">
                 {Object.keys(props.inventory).map(descriptions => {
                     let description = props.inventory[descriptions]
-                    console.log(description)
                     return <div className="uniformItems">
+                            <img className="itemImage" src={require('../../assets/images/tshirt.png')}/>
                             <h1>{description.description}</h1>
                         </div>
                 })}

@@ -4,15 +4,19 @@ import ViewSizes from './ViewSizes';
 function ViewUniformItems(props){
 
     const [uniform, setUniform] = useState(null);
+    let viewSizes;
 
     if(uniform){
-        console.log(uniform)
+        viewSizes = <ViewSizes item={uniform} close={setUniform}/>
+        document.getElementsByTagName("body")[0].style = "position: fixed; width: 100vw;";
     } else {
-        console.log(uniform)
+        viewSizes = null;
+        document.getElementsByTagName("body")[0].style = "position: none";
     }
 
     return(
         <div>
+            {viewSizes}
             <div className="uniformItemsContainer">
                 {Object.keys(props.inventory).map(descriptions => {
                     let description = props.inventory[descriptions]

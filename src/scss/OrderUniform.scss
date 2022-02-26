@@ -46,25 +46,27 @@
     background-color: rgba(0,0,0,0.6);
     z-index: 3;
     .viewSizes{
+        position: relative;
         background-color: white;
-        width: 93vw;
-        height: 93vh;
+        width: 90vw;
+        height: 90vh;
         margin: auto;
         overflow: auto;
-        margin-top: 5px;
+        margin-top: 2.5vh;
         padding: 15px;
     }
     .close{
         color: teal;
         background-color: black;
-        width: 40px;
-        height: 40px;
         position: absolute;
+        width: 47px;
         margin: 0;
-        right: 25px;
+        right: 10px;
+        top: 10px;
         border-radius: 50px;
         box-shadow: 0px 0px 10px black;
         transition: 0.2s linear;
+        font-size: 40px;
         &:hover{
             cursor: pointer;
             box-shadow: 0px 0px 20px red;

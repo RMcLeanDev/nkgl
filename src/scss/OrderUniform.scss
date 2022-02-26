@@ -48,12 +48,13 @@
     .viewSizes{
         position: relative;
         background-color: white;
-        width: 90vw;
-        height: 90vh;
+        width: 90%;
+        height: 90%;
         margin: auto;
         overflow: auto;
         margin-top: 2.5vh;
         padding: 15px;
+        border: 2px solid teal;
     }
     .close{
         color: teal;

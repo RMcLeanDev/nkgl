@@ -14,6 +14,14 @@ function App(props) {
 
   let display;
 
+  const responseGoogle = (response) => {
+    console.log(response)
+  }
+
+  const responseError = (error) => {
+    console.log(error)
+  }
+
   if(props.authUser){
     display = <div>
     <Header history={props.history}/>

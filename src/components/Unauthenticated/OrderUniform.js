@@ -12,8 +12,6 @@ function OrderUniform(props){
     const [options, setOptions] = useState("extra");
     const [error, setError] = useState()
 
-    console.log(order)
-
     function pushToOrder(e){
         order.total += 1;
         if(order.items[e.uniqueID]){

@@ -9,6 +9,7 @@ import Uniforms from './Authenticated/Uniforms/UniformsMain';
 import UnauthenticatedMain from './Unauthenticated/UnauthenticatedMain';
 import OrderUniform from './Unauthenticated/OrderUniform';
 import UnauthHeader from './Unauthenticated/UnauthHeader';
+import VansMain from './Authenticated/Vans/VansMain';
 
 function App(props) {
 
@@ -28,6 +29,7 @@ function App(props) {
     <Switch>
       <Route exact path ='/' component={Home}/>
       <Route exact path ='/uniforms' component={Uniforms}/>
+      <Route exact path ='/vans' component={VansMain}/>
       <Route component={Error404}/>
     </Switch></div>
   } else if (props.authUser === false) {

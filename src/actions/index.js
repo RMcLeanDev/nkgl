@@ -13,6 +13,9 @@ firebase.initializeApp(firebaseConfig);
 firebase.auth().onAuthStateChanged(function(user) {
   if(user){
     store.dispatch(authUserTrue());
+    firebase.database().ref("vans").on('value', function(snapshot) {
+      store.dispatch(getAllVans(snapshot.val()))
+    })
   } else {
     store.dispatch(authUserFalse());
   }
@@ -48,10 +51,10 @@ export const getInventoryList = (info) => ({
 //   type: types.DUMP_ALL_EMPLOYEES
 // })
 
-// export const getAllVans = (information) => ({
-//   type: types.GET_ALL_VANS,
-//   information
-// })
+export const getAllVans = (information) => ({
+  type: types.GET_ALL_VANS,
+  information
+})
 
 // export const dumpAllVans = () => ({
 //   type: types.DUMP_ALL_VANS

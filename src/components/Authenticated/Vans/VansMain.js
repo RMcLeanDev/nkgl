@@ -5,8 +5,12 @@ import "../../../scss/Calendar.scss"
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import AdjustVanDates from './AdjustVanDates';
+import {connect} from 'react-redux';
 
-function VansMain(){
+
+function VansMain(props){
+
+    console.log(props)
 
     let localizer = momentLocalizer(moment)
     const [startDate, setStartDate] = useState(new Date());
@@ -68,7 +72,7 @@ function VansMain(){
     return(
         <div className="orderContainer">
             <h1>Vans</h1>
-            <input type="date" onChange={e => setNewDate(moment(e.target.value).format("L"))}/>
+            <input type="date" onChange={e => console.log(e.target.value)}/>
                 <Calendar
                     localizer={localizer}
                     events={myEventsList}
@@ -76,10 +80,14 @@ function VansMain(){
                     endAccessor="end"
                     defaultView="week"
                     resizable
-                    onSelectEvent={event => changeDate(event)}
+                    onSelectEvent={event => console.log(event)}
                 />
         </div>
     )
 }
 
-export default VansMain;
+const mapStateToProps = state => ({
+    vans: state.vanState
+  })
+
+export default connect(mapStateToProps)(VansMain);

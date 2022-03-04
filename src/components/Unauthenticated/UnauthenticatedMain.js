@@ -2,12 +2,14 @@ import React from 'react';
 import '../../scss/UnauthenticatedMain.scss';
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
-import "react-big-calendar/lib/css/react-big-calendar.css"
+import "../../scss/Calendar.scss"
 import DatePicker from 'react-datepicker';
 
-function UnauthenticatedMain(){
+function UnauthenticatedMain(props){
 
     let localizer = momentLocalizer(moment)
+
+    console.log(props)
 
     console.log(new Date("March 3, 2022"))
     const myEventsList = [
@@ -33,8 +35,11 @@ function UnauthenticatedMain(){
                     events={myEventsList}
                     startAccessor="start"
                     endAccessor="end"
-                    style={{ height: 500 }}
+                    defaultView="week"
+                    resizable
                 />
+                <h1>Can have news or recent company score here.</h1>
+                <h1>Top Drivers.</h1>
             </div>
         </div>
     )

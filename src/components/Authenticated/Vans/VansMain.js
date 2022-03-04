@@ -10,8 +10,6 @@ import {connect} from 'react-redux';
 
 function VansMain(props){
 
-    console.log(props)
-
     let localizer = momentLocalizer(moment)
     const [startDate, setStartDate] = useState(new Date());
     const [newDate, setNewDate] = useState(null);
@@ -29,7 +27,7 @@ function VansMain(props){
     const myEventsList = [
         {
             title: "Spaghetti",
-            start: new Date("March 8, 2022"),
+            start: new Date("03/08/2022"),
             end: new Date("March 8, 2022")
         },
         {

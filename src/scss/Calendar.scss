@@ -22,11 +22,11 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-calendar {
-    border: 1px solid green;
   box-sizing: border-box;
   height: auto;
   display: flex;
   flex-direction: column;
+  padding: 5px;
 }
 
 .rbc-calendar *,
@@ -392,6 +392,7 @@ button.rbc-input::-moz-focus-inner {
 
 .rbc-agenda-time-cell {
   text-transform: lowercase;
+  border-left: 1px solid #ddd;
 }
 .rbc-agenda-time-cell .rbc-continues-after:after {
   content: " »";

@@ -22,6 +22,36 @@ function UnauthenticatedMain(props){
             title: "Bob",
             start: new Date("March 6, 2022"),
             end: new Date("March 6, 2022")
+        },
+        {
+            title: "test 1",
+            start: new Date("March 3, 2022"),
+            end: new Date("March 3, 2022")
+        },
+        {
+            title: "test 2",
+            start: new Date("March 3, 2022"),
+            end: new Date("March 3, 2022")
+        },
+        {
+            title: "test 3",
+            start: new Date("March 3, 2022"),
+            end: new Date("March 3, 2022")
+        },
+        {
+            title: "test 4",
+            start: new Date("March 3, 2022"),
+            end: new Date("March 3, 2022")
+        },
+        {
+            title: "test 5",
+            start: new Date("March 3, 2022"),
+            end: new Date("March 3, 2022")
+        },
+        {
+            title: "test 6",
+            start: new Date("March 3, 2022"),
+            end: new Date("March 3, 2022")
         }
     ];
 
@@ -37,6 +67,7 @@ function UnauthenticatedMain(props){
                     endAccessor="end"
                     defaultView="week"
                     resizable
+                    onSelectEvent={event => console.log(event)}
                 />
                 <h1>Can have news or recent company score here.</h1>
                 <h1>Top Drivers.</h1>

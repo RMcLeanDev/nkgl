@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import moment from 'moment';
 import firebase from 'firebase/compat/app';
 import "firebase/compat/database";
+import {FaTrashAlt} from 'react-icons/fa'
 
 
 function AdjustVanDates(props){
-
-    console.log(props)
 
     const [title, setTitle] = useState(props.information.title);
     const [start, setStart] = useState(moment(props.information.start).format("YYYY-MM-DD"));
@@ -27,6 +26,10 @@ function AdjustVanDates(props){
         }
     }
 
+    function deleteItem(){
+        console.log("weeeee")
+    }
+
     return(
         <div className="viewDatesContainer">
             <div className="viewDates">
@@ -43,7 +46,7 @@ function AdjustVanDates(props){
                     <hr />
                     <button type="submit" className="submit">Save</button>
                 </form>
-                <button className="delete">Delete</button>
+                <FaTrashAlt className="delete">Delete</FaTrashAlt>
             </div>
         </div>
     )

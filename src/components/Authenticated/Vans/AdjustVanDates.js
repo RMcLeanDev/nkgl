@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import moment from 'moment';
 import firebase from 'firebase/compat/app';
-import "firebase/compat/auth";
 import "firebase/compat/database";
 
 
@@ -29,21 +28,22 @@ function AdjustVanDates(props){
     }
 
     return(
-        <div className="viewSizesContainer">
-            <div className="viewSizes">
+        <div className="viewDatesContainer">
+            <div className="viewDates">
+                <h1 className="title">Adjust Dates</h1>
                 {error}
                 <form onSubmit={submitChanges}>
-                    <h1 onClick={() => props.close(null)} className="close">X</h1>
-                    <h1>Title</h1>
+                    <h1 onClick={() => props.close()} className="close">X</h1>
+                    <h1>Title:</h1>
                     <input type="text" value={title} onChange={e => setTitle(e.target.value)}/>
-                    <h1>Adjust Dates</h1>
                     <h1>Start Date:</h1>
                     <input type="date" value={start} onChange={e => setStart(e.target.value)}/>
                     <h1>End Date:</h1>
                     <input type="date" value={end} onChange={e => setEnd(e.target.value)}/>
                     <hr />
-                    <button type="submit">Save</button>
+                    <button type="submit" className="submit">Save</button>
                 </form>
+                <button className="delete">Delete</button>
             </div>
         </div>
     )

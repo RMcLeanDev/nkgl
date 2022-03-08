@@ -6,7 +6,8 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import AdjustVanDates from './AdjustVanDates';
 import {connect} from 'react-redux';
-
+import "../../../scss/Vans.scss";
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 function VansMain(props){
 
@@ -34,8 +35,10 @@ function VansMain(props){
 
     if(adjustDateComponent.state){
         adjustDatesComponent = <AdjustVanDates information={adjustDateComponent.info} close={() => setAdjustDateComponent({"state": false, info: {}})}/>
+        disableBodyScroll(document)
     } else {
         adjustDatesComponent = null;
+        enableBodyScroll(document)
     }
 
     return(

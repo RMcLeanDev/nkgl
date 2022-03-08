@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import "../../../scss/Calendar.scss"
@@ -10,67 +10,38 @@ import {connect} from 'react-redux';
 
 function VansMain(props){
 
+    let adjustDatesComponent;
+    const myEventsList = [];
     let localizer = momentLocalizer(moment)
-    const [startDate, setStartDate] = useState(new Date());
-    const [newDate, setNewDate] = useState(null);
-
-    function changeDate(info){
-        for (let i=0; i<myEventsList.length; i++){
-            if(myEventsList[i].title === info.title){
-                console.log(newDate)
-                myEventsList[i].start = newDate;
-                myEventsList[i].end = newDate;
+    const [adjustDateComponent, setAdjustDateComponent] = useState({"state": false, info :{}})
+    
+    if(props.vans.maintenance){
+        Object.keys(props.vans.maintenance).map(requests => {
+            let request = props.vans.maintenance[requests]
+            if(request !== true){
+                let newEnd;
+                let newTitle = request.title;
+                let newStart = new Date(request.start);
+                if(request.start !== request.end){
+                    newEnd = new Date(moment(request.end).endOf("day"))
+                } else {
+                    newEnd = new Date(request.end);
+                }
+                myEventsList.push({"title": newTitle, "start": newStart, "end": newEnd, "uniqueID": request.uniqueID})
             }
-        }
+        })
     }
 
-    const myEventsList = [
-        {
-            title: "Spaghetti",
-            start: new Date("03/08/2022"),
-            end: new Date("March 8, 2022")
-        },
-        {
-            title: "Bob",
-            start: new Date("March 6, 2022"),
-            end: new Date("March 6, 2022")
-        },
-        {
-            title: "test 1",
-            start: new Date("03/03/2022"),
-            end: new Date("03/03/2022")
-        },
-        {
-            title: "test 2",
-            start: new Date("03/03/2022"),
-            end: new Date("03/03/2022")
-        },
-        {
-            title: "test 3",
-            start: new Date("03/03/2022"),
-            end: new Date("03/03/2022")
-        },
-        {
-            title: "test 4",
-            start: new Date("03/03/2022"),
-            end: new Date("03/03/2022")
-        },
-        {
-            title: "test 5",
-            start: new Date("03/03/2022"),
-            end: new Date(moment("03/03/2022").endOf("day"))
-        },
-        {
-            title: "test 6",
-            start: new Date("03/04/2022"),
-            end: new Date(moment("03/07/2022").endOf("day"))
-        }
-    ];
+    if(adjustDateComponent.state){
+        adjustDatesComponent = <AdjustVanDates information={adjustDateComponent.info} close={() => setAdjustDateComponent({"state": false, info: {}})}/>
+    } else {
+        adjustDatesComponent = null;
+    }
 
     return(
         <div className="orderContainer">
+            {adjustDatesComponent}
             <h1>Vans</h1>
-            <input type="date" onChange={e => console.log(e.target.value)}/>
                 <Calendar
                     localizer={localizer}
                     events={myEventsList}
@@ -78,7 +49,7 @@ function VansMain(props){
                     endAccessor="end"
                     defaultView="week"
                     resizable
-                    onSelectEvent={event => console.log(event)}
+                    onSelectEvent={event => setAdjustDateComponent({"state": true, info: event})}
                 />
         </div>
     )

@@ -12,20 +12,26 @@ function AdjustVanDates(props){
     const [title, setTitle] = useState(props.information.title);
     const [start, setStart] = useState(moment(props.information.start).format("YYYY-MM-DD"));
     const [end, setEnd] = useState(moment(props.information.end).format("YYYY-MM-DD"));
+    const [error, setError] = useState(null);
 
     function submitChanges(e){
         e.preventDefault();
         let info = {"uniqueID": props.information.uniqueID, "title": title, "start": moment(start).format("L"), "end": moment(end).format("L")}
-        firebase.database().ref(`vans/maintenance/${props.information.uniqueID}`).set(info).then(res => {
-            props.close();
-        }).catch(error => {
-            console.log(error)
-        })
+        if(start > end){
+            setError("Make sure start date is less than end date!")
+        } else {
+            firebase.database().ref(`vans/maintenance/${props.information.uniqueID}`).set(info).then(res => {
+                props.close();
+            }).catch(error => {
+                console.log(error)
+            })
+        }
     }
 
     return(
         <div className="viewSizesContainer">
             <div className="viewSizes">
+                {error}
                 <form onSubmit={submitChanges}>
                     <h1 onClick={() => props.close(null)} className="close">X</h1>
                     <h1>Title</h1>

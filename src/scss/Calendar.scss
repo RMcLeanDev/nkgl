@@ -1,3 +1,5 @@
+@import './Mixins.scss';
+
 @charset "UTF-8";
 .rbc-btn {
   color: inherit;
@@ -124,6 +126,10 @@ button.rbc-input::-moz-focus-inner {
   align-items: center;
   margin-bottom: 10px;
   font-size: 16px;
+  @include mQ(650px){
+    flex-direction: column;
+    grid-gap: 5px;
+  }
 }
 .rbc-toolbar .rbc-toolbar-label {
   flex-grow: 1;

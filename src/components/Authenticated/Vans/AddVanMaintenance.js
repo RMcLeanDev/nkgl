@@ -3,6 +3,7 @@ import firebase from 'firebase/compat/app';
 import "firebase/compat/database";
 import moment from 'moment';
 import v4 from 'uuid';
+import {AiFillCheckCircle} from 'react-icons/ai'
 
 function AddVanMaintenance(props){
 
@@ -11,6 +12,9 @@ function AddVanMaintenance(props){
     const [end, setEnd] = useState(undefined);
     const [description, setDescription] = useState("");
     const [error, setError] = useState(null);
+    const [longTerm, setLongTerm] = useState(false);
+
+    console.log(longTerm)
 
     function submitChanges(e){
         e.preventDefault();
@@ -19,7 +23,7 @@ function AddVanMaintenance(props){
                 setError("Make sure start date is less than end date!")
             } else {
                 let id = v4();
-                let info = {"uniqueID": id, "title": title, "start": moment(start).format("L"), "end": moment(end).format("L"), "description": description}
+                let info = {"uniqueID": id, "title": title, "start": moment(start).format("L"), "end": moment(end).format("L"), "description": description, "longterm": longTerm}
                 firebase.database().ref(`vans/maintenance/${id}`).set(info).then(res => {
                     props.close();
                 }).catch(error => {
@@ -43,6 +47,8 @@ function AddVanMaintenance(props){
                     <input type="date" value={end} onChange={e => setEnd(e.target.value)}/>
                     <h1>Description:</h1>
                     <input type="text" value={description} onChange={e => setDescription(e.target.value)}></input>
+                    <h1>Long Term:</h1>
+                    <AiFillCheckCircle className={longTerm ? "clicked" : "notClicked"} onClick={() => longTerm ? setLongTerm(false) : setLongTerm(true)}/>
                     <hr />
                     <button type="submit" className="submit">Save</button>
                 </form>

@@ -32,7 +32,7 @@ function VansMain(props){
                 } else {
                     newEnd = new Date(request.end);
                 }
-                myEventsList.push({"title": newTitle, "start": newStart, "end": newEnd, "uniqueID": request.uniqueID, "description": request.description})
+                myEventsList.push({"title": newTitle, "start": newStart, "end": newEnd, "uniqueID": request.uniqueID, "description": request.description, "longterm": request.longterm})
             }
         })
     }
@@ -43,6 +43,25 @@ function VansMain(props){
     } else {
         adjustDatesComponent = null;
         enableBodyScroll(document)
+    }
+
+    function eventStyleGetter(event, start, end, isSelected){
+        console.log(event)
+        let style;
+        if(event.longterm){
+            style = {
+                backgroundColor: "red",
+                fontWeight: "bold"
+            }
+        } else {
+            style ={
+                color: "black",
+                fontWeight: "bold"
+            }
+        }
+        return{
+            style: style
+        }
     }
 
     return(
@@ -57,6 +76,7 @@ function VansMain(props){
                     startAccessor="start"
                     endAccessor="end"
                     defaultView="week"
+                    eventPropGetter={eventStyleGetter}
                     resizable
                     onSelectEvent={event => setAdjustDateComponent({"state": true, info: event})}
                 />

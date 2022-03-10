@@ -1,11 +1,11 @@
-@import './Mixins.scss';
-
 @charset "UTF-8";
 .rbc-btn {
   color: inherit;
   font: inherit;
   margin: 0;
 }
+
+@import './Mixins.scss';
 
 button.rbc-btn {
   overflow: visible;

@@ -8,6 +8,8 @@ import AdjustVanDates from './AdjustVanDates';
 import {connect} from 'react-redux';
 import "../../../scss/Vans.scss";
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import {AiFillFileAdd} from 'react-icons/ai';
+import AddVanMaintenance from './AddVanMaintenance';
 
 function VansMain(props){
 
@@ -15,7 +17,8 @@ function VansMain(props){
     const myEventsList = [];
     let localizer = momentLocalizer(moment)
     const [adjustDateComponent, setAdjustDateComponent] = useState({"state": false, info :{}})
-    
+    const [addVanMaintenanceComponent, setAddVanMaintenanceComponent] = useState(false);
+
     if(props.vans.maintenance){
         Object.keys(props.vans.maintenance).map(requests => {
             let request = props.vans.maintenance[requests]
@@ -28,7 +31,7 @@ function VansMain(props){
                 } else {
                     newEnd = new Date(request.end);
                 }
-                myEventsList.push({"title": newTitle, "start": newStart, "end": newEnd, "uniqueID": request.uniqueID})
+                myEventsList.push({"title": newTitle, "start": newStart, "end": newEnd, "uniqueID": request.uniqueID, "description": request.description})
             }
         })
     }
@@ -44,6 +47,8 @@ function VansMain(props){
     return(
         <div className="orderContainer">
             {adjustDatesComponent}
+            {addVanMaintenanceComponent ? (disableBodyScroll(document), <AddVanMaintenance close={() => setAddVanMaintenanceComponent(false)}/>) : (enableBodyScroll(document), null)}
+            <AiFillFileAdd className="addItem" onClick={() => setAddVanMaintenanceComponent(true)}/>
             <h1>Vans</h1>
                 <Calendar
                     localizer={localizer}

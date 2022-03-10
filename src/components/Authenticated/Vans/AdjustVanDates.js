@@ -3,6 +3,8 @@ import moment from 'moment';
 import firebase from 'firebase/compat/app';
 import "firebase/compat/database";
 import {FaTrashAlt} from 'react-icons/fa';
+import v4 from 'uuid';
+import {AiFillCheckCircle} from 'react-icons/ai'
 
 function AdjustVanDates(props){
 
@@ -18,11 +20,12 @@ function AdjustVanDates(props){
     const [start, setStart] = useState(moment(props.information.start).format("YYYY-MM-DD"));
     const [end, setEnd] = useState(moment(props.information.end).format("YYYY-MM-DD"));
     const [error, setError] = useState(null);
-    const [description, setDescription] = useState(props.information.description)
+    const [description, setDescription] = useState(props.information.description);
+    const [longTerm, setLongTerm] = useState(props.information.longterm);
 
     function submitChanges(e){
         e.preventDefault();
-        let info = {"uniqueID": props.information.uniqueID, "title": title, "start": moment(start).format("L"), "end": moment(end).format("L"), "description": description}
+        let info = {"uniqueID": props.information.uniqueID, "title": title, "start": moment(start).format("L"), "end": moment(end).format("L"), "description": description, "longterm": longTerm}
         if(start > end){
             setError("Make sure start date is less than end date!")
         } else {
@@ -57,6 +60,8 @@ function AdjustVanDates(props){
                     <input type="date" value={end} onChange={e => setEnd(e.target.value)}/>
                     <h1>Description:</h1>
                     <input type="text" value={description} onChange={e => setDescription(e.target.value)}></input>
+                    <h1>Long Term:</h1>
+                    <AiFillCheckCircle className={longTerm ? "clicked" : "notClicked"} onClick={() => longTerm ? setLongTerm(false) : setLongTerm(true)}/>
                     <hr />
                     <button type="submit" className="submit">Save</button>
                 </form>

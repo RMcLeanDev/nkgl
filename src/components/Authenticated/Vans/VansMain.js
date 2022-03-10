@@ -14,6 +14,7 @@ import AddVanMaintenance from './AddVanMaintenance';
 function VansMain(props){
 
     let adjustDatesComponent;
+    let newArray = [];
     const myEventsList = [];
     let localizer = momentLocalizer(moment)
     const [adjustDateComponent, setAdjustDateComponent] = useState({"state": false, info :{}})

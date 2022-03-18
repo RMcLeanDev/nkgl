@@ -7,7 +7,7 @@ import axios from 'axios';
 
 let apiKey
 let sessionId 
-let logonParams = {username: `xxxx`, password: `xxxx`};
+let logonParams = {username: `xxxx`};
 
 var myAdminApi = function () {
   var serverUrl = "https://myadminapi.geotab.com/v2/MyAdminApi.ashx";
@@ -69,8 +69,6 @@ var myAdminApi = function () {
 myAdminApi().call(`Authenticate`, logonParams, function(user){
   console.log(user)
 });
-
-axios.get()
 
 const {types, firebaseConfig} = constants;
 

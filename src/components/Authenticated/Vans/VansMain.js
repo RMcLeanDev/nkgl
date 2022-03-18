@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import "../../../scss/Calendar.scss"
-import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import AdjustVanDates from './AdjustVanDates';
 import {connect} from 'react-redux';
@@ -10,6 +9,7 @@ import "../../../scss/Vans.scss";
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import {AiFillFileAdd} from 'react-icons/ai';
 import AddVanMaintenance from './AddVanMaintenance';
+import XcelerateAPI from './XcelerateAPI';
 
 function VansMain(props){
 
@@ -60,12 +60,13 @@ function VansMain(props){
             }
         }
         return{
-            style: style
+            style: style,
         }
     }
 
     return(
         <div className="orderContainer">
+            <XcelerateAPI/>
             {adjustDatesComponent}
             {addVanMaintenanceComponent ? (disableBodyScroll(document), <AddVanMaintenance close={() => setAddVanMaintenanceComponent(false)}/>) : (enableBodyScroll(document), null)}
             <AiFillFileAdd className="addItem" onClick={() => setAddVanMaintenanceComponent(true)}/>

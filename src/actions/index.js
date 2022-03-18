@@ -7,7 +7,7 @@ import axios from 'axios';
 
 let apiKey
 let sessionId 
-let logonParams = {username: `xxxx`};
+let logonParams = {username: `xxxxrn `};
 
 var myAdminApi = function () {
   var serverUrl = "https://myadminapi.geotab.com/v2/MyAdminApi.ashx";
@@ -51,7 +51,6 @@ var myAdminApi = function () {
               var errorString;
               if (error && error.name && error.message) {
                   errorString = error.name + ": " + error.message;
-                  console.log(errorString)
               }
               else if (error.target || (error instanceof XMLHttpRequest && error.status === 0)) {
                   errorString = "Network Error: Couldn't connect to the server. Please check your network connection and try again.";
@@ -70,6 +69,11 @@ myAdminApi().call(`Authenticate`, logonParams, function(user){
   console.log(user)
 });
 
+axios.get(`https://xcelerate.elementfleet.com/web/common/searchVehicleListing`).then(info => {
+  console.log(info)
+}).catch(error => {
+  console.log(error)
+})
 const {types, firebaseConfig} = constants;
 
 firebase.initializeApp(firebaseConfig);

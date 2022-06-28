@@ -13,7 +13,7 @@ import XcelerateAPI from './XcelerateAPI';
 
 function VansMain(props){
 
-    console.log(props.vans.allVans)
+    console.log(props)
 
     let adjustDatesComponent;
     const myEventsList = [];
@@ -71,7 +71,7 @@ function VansMain(props){
             {adjustDatesComponent}
             {addVanMaintenanceComponent ? (disableBodyScroll(document), <AddVanMaintenance close={() => setAddVanMaintenanceComponent(false)} vans={props.vans.allVans}/>) : (enableBodyScroll(document), null)}
             <AiFillFileAdd className="addItem" onClick={() => setAddVanMaintenanceComponent(true)}/>
-            <p className="lastUpdated">Last Updated: {props.vans.allVans ? moment(props.vans.allVans.lastUpdate).format('MMMM Do, h:mm:ss a'):"loading"}</p>
+            <p className="lastUpdated">Last Updated: {props.vans.allVans ? moment(props.vans.allVans.lastUpdated).format('MMMM Do, h:mm:ss a'):"loading"}</p>
             <h1>Vans</h1>
                 <Calendar
                     localizer={localizer}

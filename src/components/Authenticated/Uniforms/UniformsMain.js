@@ -18,7 +18,6 @@ function UniformsMain(props){
 
     return(
         <div className="uniformMain">
-            <h1>Uniforms</h1>
             <div className="tabs">
                 <button className={`${tabActive==="Orders" ? "active" : ""}`} onClick={() => setTab("Orders")}>Orders</button>
                 <button className={`${tabActive==="Inventory" ? "active" : ""}`} onClick={() => setTab("Inventory")}>Inventory</button>

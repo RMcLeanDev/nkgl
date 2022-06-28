@@ -10,6 +10,7 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import {AiFillFileAdd} from 'react-icons/ai';
 import AddVanMaintenance from './AddVanMaintenance';
 import XcelerateAPI from './XcelerateAPI';
+import ViewVans from './ViewVans';
 
 function VansMain(props){
 
@@ -20,6 +21,7 @@ function VansMain(props){
     let localizer = momentLocalizer(moment)
     const [adjustDateComponent, setAdjustDateComponent] = useState({"state": false, info :{}})
     const [addVanMaintenanceComponent, setAddVanMaintenanceComponent] = useState(false);
+    const[tabActive, setTab] = useState("Orders");
 
     if(props.vans.maintenance){
         Object.keys(props.vans.maintenance).map(requests => {
@@ -67,22 +69,33 @@ function VansMain(props){
 
     return(
         <div className="orderContainer">
-            <XcelerateAPI vans={props.vans.allVans}/>
-            {adjustDatesComponent}
-            {addVanMaintenanceComponent ? (disableBodyScroll(document), <AddVanMaintenance close={() => setAddVanMaintenanceComponent(false)} vans={props.vans.allVans}/>) : (enableBodyScroll(document), null)}
-            <AiFillFileAdd className="addItem" onClick={() => setAddVanMaintenanceComponent(true)}/>
-            <p className="lastUpdated">Last Updated: {props.vans.allVans ? moment(props.vans.allVans.lastUpdated).format('MMMM Do, h:mm:ss a'):"loading"}</p>
-            <h1>Vans</h1>
-                <Calendar
-                    localizer={localizer}
-                    events={myEventsList}
-                    startAccessor="start"
-                    endAccessor="end"
-                    defaultView="week"
-                    eventPropGetter={eventStyleGetter}
-                    resizable
-                    onSelectEvent={event => setAdjustDateComponent({"state": true, info: event})}
-                />
+            <div className="tabs">
+                <button className={`${tabActive==="Orders" ? "active" : ""}`} onClick={() => setTab("Orders")}>Summary</button>
+                <button className={`${tabActive==="Inventory" ? "active" : ""}`} onClick={() => setTab("Inventory")}>All Vans</button>
+            </div>
+            {
+                tabActive === "Orders" ? 
+                <div>
+                    <XcelerateAPI vans={props.vans.allVans}/>
+                    {adjustDatesComponent}
+                    {addVanMaintenanceComponent ? (disableBodyScroll(document), <AddVanMaintenance close={() => setAddVanMaintenanceComponent(false)} vans={props.vans.allVans}/>) : (enableBodyScroll(document), null)}
+                    <AiFillFileAdd className="addItem" onClick={() => setAddVanMaintenanceComponent(true)}/>
+                    <p className="lastUpdated">Last Updated: {props.vans.allVans ? moment(props.vans.allVans.lastUpdated).format('MMMM Do, h:mm:ss a'):"loading"}</p>
+                    <h1>Vans</h1>
+                    <Calendar
+                        localizer={localizer}
+                        events={myEventsList}
+                        startAccessor="start"
+                        endAccessor="end"
+                        defaultView="week"
+                        eventPropGetter={eventStyleGetter}
+                        resizable
+                        onSelectEvent={event => setAdjustDateComponent({"state": true, info: event})}
+                    />
+                </div> : 
+                <ViewVans/>
+            }
+            
         </div>
     )
 }

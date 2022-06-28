@@ -13,6 +13,25 @@
             margin-bottom: 15px;
         }
     }
+    .tabs{
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        border-bottom: 2px solid black;
+        border-top: 2px solid black;
+        margin-top: -2px;
+        button{
+            width: 50%;
+            font-size: 25px;
+            font-weight: bold;
+            border: none;
+            background-color: white;
+            padding: 10px;
+        }
+        .active{
+            background-color: teal;
+        }
+    }
 }
 
 .uniformItemsContainer{

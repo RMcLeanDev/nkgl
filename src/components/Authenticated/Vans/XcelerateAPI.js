@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import * as XLSX from 'xlsx/xlsx.mjs';
 import moment from 'moment';
 import firebase from 'firebase/compat/app';
-import "firebase/compat/auth";
 import "firebase/compat/database";
 
 function XcelerateAPI(props){

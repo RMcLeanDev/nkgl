@@ -4,9 +4,8 @@ import moment from 'moment';
 import firebase from 'firebase/compat/app';
 import "firebase/compat/auth";
 import "firebase/compat/database";
-import { formats } from 'react-big-calendar/lib/localizers/moment';
 
-function XcelerateAPI(){
+function XcelerateAPI(props){
     const [file,setFile] = useState(null)
 
     function excelToJSON(file){
@@ -28,16 +27,22 @@ function XcelerateAPI(){
     function pushToDataBase(e){
         e.preventDefault()
         let timeStamp = moment.now()
-        let newArry = [["lastUpdated", timeStamp]]
+        let newObj = props.vans;
+        newObj["lastUpdated"] = timeStamp;
+        console.log(props.vans)
         if(file){
-            for( let i=0; i<file.length; i++){
-                if(file[i].length > 2){
-                    console.log(file[i])
-                    newArry.push([file[i][27], file[i][14]])
-                }
+            for(let i=0; i<file.length; i++){
+                Object.keys(props.vans).map(allVans => {
+                    let van = props.vans[allVans];
+                    if(file[i][14] && van){
+                        if(file[i][27] === van.vin){
+                            newObj[van.assetId]["currentOdometer"] = file[i][14]
+                        }
+                    }
+                })
             }
         }
-        console.log(newArry)
+        firebase.database().ref("vans/allVans").update(newObj);
     }
 
     return(

@@ -32,6 +32,7 @@ function AddVanMaintenance(props){
             }
         }
     }
+
     return(
         <div className="viewDatesContainer">
             <div className="viewDates">
@@ -39,8 +40,10 @@ function AddVanMaintenance(props){
                 <h1>Add New Van Maintenance</h1>
                 {error}
                 <form onSubmit={submitChanges}>
-                    <h1>Title:</h1>
-                    <input type="text" value={title} onChange={e => setTitle(e.target.value)}/>
+                    <h1>Van:</h1>
+                    <select>
+                        {props.vans ? "working on it":"loading"}
+                    </select>
                     <h1>Start Date:</h1>
                     <input type="date" value={start} onChange={e => setStart(e.target.value)}/>
                     <h1>End Date:</h1>

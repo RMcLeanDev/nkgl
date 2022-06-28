@@ -6,8 +6,6 @@ import UniformInventory from './UniformInventory';
 
 function UniformsMain(props){
 
-    console.log(props);
-
     let view;
 
     const[tabActive, setTab] = useState("Orders");

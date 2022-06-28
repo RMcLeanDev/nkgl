@@ -49,7 +49,6 @@ function VansMain(props){
     }
 
     function eventStyleGetter(event, start, end, isSelected){
-        console.log(event)
         let style;
         if(event.longterm){
             style = {
@@ -93,7 +92,7 @@ function VansMain(props){
                         onSelectEvent={event => setAdjustDateComponent({"state": true, info: event})}
                     />
                 </div> : 
-                <ViewVans/>
+                <ViewVans vans={props.vans.allVans}/>
             }
             
         </div>

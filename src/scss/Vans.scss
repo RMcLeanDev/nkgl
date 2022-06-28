@@ -84,3 +84,29 @@
     left: 10px;
     top: 50px;
 }
+
+.vanSortOptions{
+    display: flex;
+    justify-content: space-around;
+    button{
+        width: 50%;
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+        background-color: white;
+        padding: 10px;
+    }
+    .active{
+        background-color: teal;
+    }
+}
+
+.displayVans{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
+    &:nth-child(odd){
+        background-color: lightgrey;
+    }
+}

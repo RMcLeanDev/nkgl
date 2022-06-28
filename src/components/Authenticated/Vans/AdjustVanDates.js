@@ -53,7 +53,7 @@ function AdjustVanDates(props){
                 <form onSubmit={submitChanges}>
                     <h1 onClick={() => props.close()} className="close">X</h1>
                     <h1>Title:</h1>
-                    <input type="text" value={title} onChange={e => setTitle(e.target.value)}/>
+                    <h3>{title}</h3>
                     <h1>Start Date:</h1>
                     <input type="date" value={start} onChange={e => setStart(e.target.value)}/>
                     <h1>End Date:</h1>

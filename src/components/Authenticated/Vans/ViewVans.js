@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {FiArrowDown, FiArrowUp} from 'react-icons/fi';
 
 function ViewVans(props){
 
@@ -56,9 +57,9 @@ function ViewVans(props){
     return(
         <div>
             <div className="vanSortOptions">
-                <button className={`${sortOption.tab==="dspVehicleId" ? "active" : ""}`} onClick={() => setSort({tab: "dspVehicleId", sort: sortOption.sort === "ascending" ? "descending":"ascending"})}>Name</button>
-                <button className={`${sortOption.tab==="currentOdometer" ? "active" : ""}`} onClick={() => setSort({tab: "currentOdometer", sort: sortOption.sort === "ascending" ? "descending":"ascending"})}>Odometer</button>
-                <button className={`${sortOption.tab==="pmDue" ? "active" : ""}`} onClick={() => setSort({tab: "pmDue", sort: sortOption.sort === "ascending" ? "descending":"ascending"})}>PM</button>
+                <button className={`${sortOption.tab==="dspVehicleId" ? "active" : ""}`} onClick={() => setSort({sort: sortOption.tab==="dspVehicleId" ? sortOption.sort === "ascending" ? "descending":"ascending":"ascending", tab: "dspVehicleId"})}>Name {sortOption.tab==="dspVehicleId" ? sortOption.sort === "ascending" ?<FiArrowDown className="arrow"/> : <FiArrowUp className="arrow"/> : null}</button>
+                <button className={`${sortOption.tab==="currentOdometer" ? "active" : ""}`} onClick={() => setSort({sort: sortOption.tab==="currentOdometer" ?sortOption.sort === "ascending" ? "descending":"ascending":"ascending", tab: "currentOdometer"})}>Odometer {sortOption.tab==="currentOdometer" ? sortOption.sort === "ascending" ?<FiArrowDown className="arrow"/> : <FiArrowUp className="arrow"/> : null}</button>
+                <button className={`${sortOption.tab==="pmDue" ? "active" : ""}`} onClick={() => setSort({sort: sortOption.tab==="pmDue" ? sortOption.sort === "ascending" ? "descending":"ascending":"ascending", tab: "pmDue"})}>PM {sortOption.tab==="pmDue" ? sortOption.sort === "ascending" ?<FiArrowDown className="arrow"/> : <FiArrowUp className="arrow"/> : null}</button>
             </div>
             {Object.keys(sorted).map(allVans=> {
                 let van = sorted[allVans]

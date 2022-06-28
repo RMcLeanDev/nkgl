@@ -29,8 +29,8 @@ function XcelerateAPI(props){
         let timeStamp = moment.now()
         let newObj = props.vans;
         newObj["lastUpdated"] = timeStamp;
-        console.log(props.vans)
         if(file){
+            console.log(file)
             for(let i=0; i<file.length; i++){
                 Object.keys(props.vans).map(allVans => {
                     let van = props.vans[allVans];

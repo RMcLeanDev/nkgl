@@ -19,7 +19,7 @@ function VansMain(props){
     const myEventsList = [];
     let localizer = momentLocalizer(moment)
     const [adjustDateComponent, setAdjustDateComponent] = useState({"state": false, info :{}})
-    const [addVanMaintenanceComponent, setAddVanMaintenanceComponent] = useState(false);
+    const [addVanMaintenanceComponent, setAddVanMaintenanceComponent] = useState({state: false, info: null, multiCheck: false});
     const[tabActive, setTab] = useState("Orders");
 
     if(props.vans.maintenance){
@@ -78,8 +78,8 @@ function VansMain(props){
                 tabActive === "Orders" ?
                 <div>
                     {adjustDatesComponent}
-                    {addVanMaintenanceComponent ? (disableBodyScroll(document), <AddVanMaintenance close={() => setAddVanMaintenanceComponent(false)} vans={props.vans.allVans}/>) : (enableBodyScroll(document), null)}
-                    <AiFillFileAdd className="addItem" onClick={() => setAddVanMaintenanceComponent(true)}/>
+                    {addVanMaintenanceComponent.state ? (disableBodyScroll(document), <AddVanMaintenance close={() => setAddVanMaintenanceComponent(false)} vans={addVanMaintenanceComponent.info} multiCheck={addVanMaintenanceComponent.multiCheck}/>) : (enableBodyScroll(document), null)}
+                    <AiFillFileAdd className="addItem" onClick={() => setAddVanMaintenanceComponent({state: true, info: props.vans.allVans, multiCheck: true})}/>
                     <Calendar
                         localizer={localizer}
                         events={myEventsList}
@@ -94,7 +94,7 @@ function VansMain(props){
                         let van = props.vans.allVans[vans]
                         let pmDue = van.lastPM + 5000 - van.currentOdometer;
                         if(pmDue < 1000){
-                            return <div className="closeToPm">
+                            return <div className="closeToPm" onClick={() => setAddVanMaintenanceComponent({state: true, info: van, multiCheck: false})}>
                                 <p>{van.dspVehicleId}</p>
                                 <p>{pmDue.toFixed(0)} Miles</p>
                             </div>

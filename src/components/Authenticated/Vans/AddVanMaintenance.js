@@ -15,9 +15,8 @@ function AddVanMaintenance(props){
     const [longTerm, setLongTerm] = useState(false);
     let sorted;
 
-    console.log(title);
-
-    if(props.vans){
+    
+    if(props.vans && props.multiCheck){
         sorted = Object.entries(props.vans).sort((a,b) => {
             let id1 = a[1].dspVehicleId
             let id2 = b[1].dspVehicleId
@@ -25,6 +24,10 @@ function AddVanMaintenance(props){
                 return id1.localeCompare(id2, undefined, {numeric: true, sensitivity: 'base'})
             }
         })
+    } else {
+        if(title === ""){
+            setTitle(props.vans.dspVehicleId)
+        }
     }
 
     function submitChanges(e){
@@ -52,14 +55,14 @@ function AddVanMaintenance(props){
                 {error}
                 <form onSubmit={submitChanges}>
                     <h1>Van:</h1>
-                    {props.vans ? 
+                    {props.vans ? props.multiCheck ?
                     <select onChange={e => setTitle(e.target.value)}>
                         {Object.keys(sorted).map(allVans => {
                             let van = sorted[allVans];
                             return <option key={van} value={van[1].dspVehicleId}>{van[1].dspVehicleId}</option>
                         })}
                     </select>
-                        :"loading"}
+                        : <p>{props.vans.dspVehicleId}</p> : "Loading"}
                     <h1>Start Date:</h1>
                     <input type="date" value={start} onChange={e => setStart(e.target.value)}/>
                     <h1>End Date:</h1>

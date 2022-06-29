@@ -92,10 +92,11 @@ function VansMain(props){
                     />
                     {Object.keys(props.vans.allVans).map(vans => {
                         let van = props.vans.allVans[vans]
-                        if(van.currentOdometer - van.lastPM < 1000){
+                        let pmDue = van.lastPM + 5000 - van.currentOdometer;
+                        if(pmDue < 1000){
                             return <div className="closeToPm">
                                 <p>{van.dspVehicleId}</p>
-                                <p>{van.currentOdometer.toFixed(0) - van.lastPM.toFixed(0)} Miles</p>
+                                <p>{pmDue.toFixed(0)} Miles</p>
                             </div>
                         }
                     })}

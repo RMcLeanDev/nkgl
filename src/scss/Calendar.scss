@@ -1,3 +1,5 @@
+@import './Mixins.scss';
+
 @charset "UTF-8";
 .rbc-btn {
   color: inherit;
@@ -29,6 +31,12 @@ button.rbc-input::-moz-focus-inner {
   display: flex;
   flex-direction: column;
   padding: 5px;
+  width: 94vw;
+  margin: auto;
+  margin-top: 60px;
+  @include mQ(650px){
+    margin-top: 7px;
+  }
 }
 
 .rbc-calendar *,

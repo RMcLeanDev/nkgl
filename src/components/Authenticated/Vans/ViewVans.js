@@ -2,12 +2,15 @@ import React, {useState} from 'react';
 import {FiArrowDown, FiArrowUp} from 'react-icons/fi';
 import firebase from 'firebase/compat/app';
 import "firebase/compat/database";
+import moment from 'moment'
+import XcelerateAPI from './XcelerateAPI';
 
 function ViewVans(props){
 
     const [sortOption, setSort] = useState({tab: "dspVehicleId", sort: "ascending"})
     const [lastPMForm, setlastPMForm] = useState({state: false, van: null});
     const [updatePm, setUpdatePm] = useState("");
+    const [updateAllMiles, setUpdateAllMiles] = useState(false);
 
     let sorted;
     if(props.vans){
@@ -76,7 +79,8 @@ function ViewVans(props){
                     </form>
                 </div>
             </div>:null}
-            
+            <p className="lastUpdated" onClick={() => setUpdateAllMiles(!updateAllMiles)}>Last Updated: {props.vans ? moment(props.vans.lastUpdated).format('MMMM Do, h:mm:ss a'):"loading"}</p>
+            {updateAllMiles ? <XcelerateAPI vans={props.vans}/> : null}
             <div className="vanSortOptions">
                 <button className={`${sortOption.tab==="dspVehicleId" ? "active" : ""}`} onClick={() => setSort({sort: sortOption.tab==="dspVehicleId" ? sortOption.sort === "ascending" ? "descending":"ascending":"ascending", tab: "dspVehicleId"})}>Name {sortOption.tab==="dspVehicleId" ? sortOption.sort === "ascending" ?<FiArrowDown className="arrow"/> : <FiArrowUp className="arrow"/> : null}</button>
                 <button className={`${sortOption.tab==="currentOdometer" ? "active" : ""}`} onClick={() => setSort({sort: sortOption.tab==="currentOdometer" ?sortOption.sort === "ascending" ? "descending":"ascending":"ascending", tab: "currentOdometer"})}>Odometer {sortOption.tab==="currentOdometer" ? sortOption.sort === "ascending" ?<FiArrowDown className="arrow"/> : <FiArrowUp className="arrow"/> : null}</button>

@@ -1,3 +1,5 @@
+@import './Mixins.scss';
+
 .viewDatesContainer{
     position: fixed;
     top: 0;
@@ -6,21 +8,22 @@
     height: 100vh;
     background-color: rgba(0,0,0,0.6);
     z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .title{
         border-bottom: 1px solid teal;
     }
     .viewDates{
         position: relative;
         background-color: white;
-        width: 90%;
-        margin: auto;
+        max-height: 90vh;
         overflow: auto;
-        margin-top: 2.5vh;
-        padding: 15px;
-        border: 2px solid teal;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        width: 90vw;
+        h1{
+            margin: 0;
+            margin-bottom: 10px;
+        }
         input{
             height: 25px;
             text-align: center;
@@ -35,6 +38,7 @@
         font-size: 25px;
         margin: auto;
         margin-top: 10px;
+        margin-bottom: 15px;
     }
     .delete{
         position: absolute;
@@ -53,7 +57,7 @@
         height: 40px;
         margin: 0;
         right: 1%;
-        top: 2%;
+        top: 1%;
         border-radius: 50px;
         box-shadow: 0px 0px 10px black;
         transition: 0.2s linear;

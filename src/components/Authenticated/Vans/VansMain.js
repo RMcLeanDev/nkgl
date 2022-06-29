@@ -90,18 +90,18 @@ function VansMain(props){
                         resizable
                         onSelectEvent={event => setAdjustDateComponent({"state": true, info: event})}
                     />
+                    {Object.keys(props.vans.allVans).map(vans => {
+                        let van = props.vans.allVans[vans]
+                        if(van.currentOdometer - van.lastPM < 1000){
+                            return <div className="closeToPm">
+                                <p>{van.dspVehicleId}</p>
+                                <p>{van.currentOdometer.toFixed(0) - van.lastPM.toFixed(0)} Miles</p>
+                            </div>
+                        }
+                    })}
                 </div> : 
                 <ViewVans vans={props.vans.allVans}/>
             }
-            {Object.keys(props.vans.allVans).map(vans => {
-                let van = props.vans.allVans[vans]
-                if(van.currentOdometer - van.lastPM < 1000){
-                    return <div className="closeToPm">
-                        <p>{van.dspVehicleId}</p>
-                        <p>{van.currentOdometer.toFixed(0) - van.lastPM.toFixed(0)} Miles</p>
-                    </div>
-                }
-            })}
         </div>
             : 
             <div className="orderContainer">

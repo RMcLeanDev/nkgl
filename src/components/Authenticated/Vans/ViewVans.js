@@ -65,6 +65,7 @@ function ViewVans(props){
         e.preventDefault()
         firebase.database().ref(`vans/allVans/${lastPMForm.van.assetId}`).update({"lastPM": parseInt(updatePm)});
         setUpdatePm({state: false, van: null});
+        setlastPMForm(false)
     }
 
     return(

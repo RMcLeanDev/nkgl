@@ -66,13 +66,16 @@ function VansMain(props){
     }
 
     return(
-        <div className="orderContainer">
+        <div>
+        {
+            props.vans.allVans ? 
+            <div className="orderContainer">
             <div className="tabs">
                 <button className={`${tabActive==="Orders" ? "active" : ""}`} onClick={() => setTab("Orders")}>Summary</button>
                 <button className={`${tabActive==="Inventory" ? "active" : ""}`} onClick={() => setTab("Inventory")}>All Vans</button>
             </div>
             {
-                tabActive === "Orders" ? 
+                tabActive === "Orders" ?
                 <div>
                     {adjustDatesComponent}
                     {addVanMaintenanceComponent ? (disableBodyScroll(document), <AddVanMaintenance close={() => setAddVanMaintenanceComponent(false)} vans={props.vans.allVans}/>) : (enableBodyScroll(document), null)}
@@ -90,7 +93,21 @@ function VansMain(props){
                 </div> : 
                 <ViewVans vans={props.vans.allVans}/>
             }
-            
+            {Object.keys(props.vans.allVans).map(vans => {
+                let van = props.vans.allVans[vans]
+                if(van.currentOdometer - van.lastPM < 1000){
+                    return <div className="closeToPm">
+                        <p>{van.dspVehicleId}</p>
+                        <p>{van.currentOdometer.toFixed(0) - van.lastPM.toFixed(0)} Miles</p>
+                    </div>
+                }
+            })}
+        </div>
+            : 
+            <div className="orderContainer">
+                "Loading..."
+            </div>
+        }
         </div>
     )
 }

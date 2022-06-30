@@ -90,7 +90,6 @@ function ViewVans(props){
             {Object.keys(sorted).map(allVans=> {
                 let van = sorted[allVans]
                 let pmDue = van[1].lastPM + 5000 - van[1].currentOdometer;
-                console.log(pmDue)
                 if(van[1].dspVehicleId !== "Maintenance" && van[0] !== "lastUpdated"){
                     
                     return <div className="displayVans">

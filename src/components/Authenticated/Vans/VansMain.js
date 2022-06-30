@@ -25,17 +25,19 @@ function VansMain(props){
 
     if(props.vans.allVans){
         sorted = Object.entries(props.vans.allVans).sort((a,b) => {
-            let id1 = a[1]["lastPM"]
-            let id2 = b[1]["lastPM"]
-            if(id1<id2){
+            let id1 = a[1].lastPM + 5000 - a[1].currentOdometer
+            let id2 = b[1].lastPM + 5000 - b[1].currentOdometer
+            if(id1>id2){
                 return 1
-            } else if (id1>id2){
+            } else if (id1<id2){
                 return -1
             } else {
                 return 0
             }
         })
     }
+
+    console.log(sorted)
 
     if(props.vans.maintenance){
         Object.keys(props.vans.maintenance).map(requests => {

@@ -25,15 +25,9 @@ function VansMain(props){
 
     if(props.vans.allVans){
         sorted = Object.entries(props.vans.allVans).sort((a,b) => {
-            let id1 = a[1].lastPM + 5000 - a[1].currentOdometer
-            let id2 = b[1].lastPM + 5000 - b[1].currentOdometer
-            if(id1>id2){
-                return 1
-            } else if (id1<id2){
-                return -1
-            } else {
-                return 0
-            }
+            let id1 = (a[1].lastPM + 5000 - a[1].currentOdometer)
+            let id2 = (b[1].lastPM + 5000 - b[1].currentOdometer)
+            return id1 < id2 ? -1 : 1;
         })
     }
 
@@ -110,6 +104,7 @@ function VansMain(props){
                     {sorted ? Object.keys(sorted).map(vans => {
                         let van = sorted[vans][1]
                         let pmDue = van.lastPM + 5000 - van.currentOdometer;
+                        console.log(van)
                         if(pmDue < 0){
                             return <div className="closeToPm" style={{backgroundColor: "rgba(255,0,0,0.6)"}} onClick={() => setAddVanMaintenanceComponent({state: true, info: van, multiCheck: false})}>
                                 <p>{van.dspVehicleId}</p>

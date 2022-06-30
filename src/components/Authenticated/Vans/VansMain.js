@@ -110,8 +110,12 @@ function VansMain(props){
                     {sorted ? Object.keys(sorted).map(vans => {
                         let van = sorted[vans][1]
                         let pmDue = van.lastPM + 5000 - van.currentOdometer;
-                        if(pmDue < 1000){
-                            console.log(van)
+                        if(pmDue < 0){
+                            return <div className="closeToPm" style={{backgroundColor: "rgba(255,0,0,0.6)"}} onClick={() => setAddVanMaintenanceComponent({state: true, info: van, multiCheck: false})}>
+                                <p>{van.dspVehicleId}</p>
+                                <p>{pmDue.toFixed(0)} Miles</p>
+                            </div>
+                        } else if(pmDue < 1000){
                             return <div className="closeToPm" onClick={() => setAddVanMaintenanceComponent({state: true, info: van, multiCheck: false})}>
                                 <p>{van.dspVehicleId}</p>
                                 <p>{pmDue.toFixed(0)} Miles</p>

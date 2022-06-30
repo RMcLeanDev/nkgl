@@ -21,6 +21,21 @@ function VansMain(props){
     const [adjustDateComponent, setAdjustDateComponent] = useState({"state": false, info :{}})
     const [addVanMaintenanceComponent, setAddVanMaintenanceComponent] = useState({state: false, info: null, multiCheck: false});
     const[tabActive, setTab] = useState("Orders");
+    let sorted;
+
+    if(props.vans.allVans){
+        sorted = Object.entries(props.vans.allVans).sort((a,b) => {
+            let id1 = a[1]["lastPM"]
+            let id2 = b[1]["lastPM"]
+            if(id1<id2){
+                return 1
+            } else if (id1>id2){
+                return -1
+            } else {
+                return 0
+            }
+        })
+    }
 
     if(props.vans.maintenance){
         Object.keys(props.vans.maintenance).map(requests => {
@@ -90,8 +105,8 @@ function VansMain(props){
                         resizable
                         onSelectEvent={event => setAdjustDateComponent({"state": true, info: event})}
                     />
-                    {Object.keys(props.vans.allVans).map(vans => {
-                        let van = props.vans.allVans[vans]
+                    {sorted ? Object.keys(sorted).map(vans => {
+                        let van = sorted[vans][1]
                         let pmDue = van.lastPM + 5000 - van.currentOdometer;
                         if(pmDue < 1000){
                             return <div className="closeToPm" onClick={() => setAddVanMaintenanceComponent({state: true, info: van, multiCheck: false})}>
@@ -99,7 +114,7 @@ function VansMain(props){
                                 <p>{pmDue.toFixed(0)} Miles</p>
                             </div>
                         }
-                    })}
+                    }) : "loading"}
                 </div> : 
                 <ViewVans vans={props.vans.allVans}/>
             }

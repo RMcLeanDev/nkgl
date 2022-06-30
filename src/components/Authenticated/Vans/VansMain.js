@@ -115,7 +115,7 @@ function VansMain(props){
                                 <p>{van.dspVehicleId}</p>
                                 <p>{pmDue.toFixed(0)} Miles</p>
                             </div>
-                        } else if(pmDue < 1000){
+                        } else if(pmDue > 0 && pmDue < 1000){
                             return <div className="closeToPm" onClick={() => setAddVanMaintenanceComponent({state: true, info: van, multiCheck: false})}>
                                 <p>{van.dspVehicleId}</p>
                                 <p>{pmDue.toFixed(0)} Miles</p>

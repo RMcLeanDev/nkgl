@@ -14,7 +14,7 @@ function ViewVans(props){
 
     let sorted;
     if(props.vans){
-        if(sortOption.tab === "currentOdometer" || sortOption.tab==="pmDue"){
+        if(sortOption.tab === "currentOdometer"){
             if(sortOption.sort === "ascending"){
                 sorted = Object.entries(props.vans).sort((a,b) => {
                     let id1 = a[1][sortOption.tab]
@@ -39,6 +39,32 @@ function ViewVans(props){
                         return 0
                     }
                 })
+            }
+        } else if(sortOption.tab==="lastPM"){
+            if(sortOption.sort === "ascending"){
+                sorted = Object.entries(props.vans).sort((a, b) => {
+                    let id1 = a[1].lastPM + 5000 - a[1].currentOdometer
+                    let id2 = b[1].lastPM + 5000 - b[1].currentOdometer
+                    if(id1<id2){
+                        return -1
+                    } else if (id1>id2){
+                        return 1
+                    } else {
+                        return 0
+                    }
+                    })    
+            } else {
+                sorted = Object.entries(props.vans).sort((a, b) => {
+                    let id1 = a[1].lastPM + 5000 - a[1].currentOdometer
+                    let id2 = b[1].lastPM + 5000 - b[1].currentOdometer
+                    if(id1<id2){
+                        return 1
+                    } else if (id1>id2){
+                        return -1
+                    } else {
+                        return 0
+                    }
+                })        
             }
         } else {
             if (sortOption.sort === "ascending"){
@@ -85,7 +111,7 @@ function ViewVans(props){
             <div className="vanSortOptions">
                 <button className={`${sortOption.tab==="dspVehicleId" ? "active" : ""}`} onClick={() => setSort({sort: sortOption.tab==="dspVehicleId" ? sortOption.sort === "ascending" ? "descending":"ascending":"ascending", tab: "dspVehicleId"})}>Name {sortOption.tab==="dspVehicleId" ? sortOption.sort === "ascending" ?<FiArrowDown className="arrow"/> : <FiArrowUp className="arrow"/> : null}</button>
                 <button className={`${sortOption.tab==="currentOdometer" ? "active" : ""}`} onClick={() => setSort({sort: sortOption.tab==="currentOdometer" ?sortOption.sort === "ascending" ? "descending":"ascending":"ascending", tab: "currentOdometer"})}>Odometer {sortOption.tab==="currentOdometer" ? sortOption.sort === "ascending" ?<FiArrowDown className="arrow"/> : <FiArrowUp className="arrow"/> : null}</button>
-                <button className={`${sortOption.tab==="pmDue" ? "active" : ""}`} onClick={() => setSort({sort: sortOption.tab==="pmDue" ? sortOption.sort === "ascending" ? "descending":"ascending":"ascending", tab: "pmDue"})}>PM {sortOption.tab==="pmDue" ? sortOption.sort === "ascending" ?<FiArrowDown className="arrow"/> : <FiArrowUp className="arrow"/> : null}</button>
+                <button className={`${sortOption.tab==="lastPM" ? "active" : ""}`} onClick={() => setSort({sort: sortOption.tab==="lastPM" ? sortOption.sort === "ascending" ? "descending":"ascending":"ascending", tab: "lastPM"})}>PM {sortOption.tab==="lastPM" ? sortOption.sort === "ascending" ?<FiArrowDown className="arrow"/> : <FiArrowUp className="arrow"/> : null}</button>
             </div>
             {Object.keys(sorted).map(allVans=> {
                 let van = sorted[allVans]

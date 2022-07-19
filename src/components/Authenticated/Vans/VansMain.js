@@ -13,8 +13,6 @@ import ViewVans from './ViewVans';
 
 function VansMain(props){
 
-    console.log(props)
-
     let adjustDatesComponent;
     const myEventsList = [];
     let localizer = momentLocalizer(moment)
@@ -30,8 +28,6 @@ function VansMain(props){
             return id1 < id2 ? -1 : 1;
         })
     }
-
-    console.log(sorted)
 
     if(props.vans.maintenance){
         Object.keys(props.vans.maintenance).map(requests => {
@@ -104,15 +100,14 @@ function VansMain(props){
                     {sorted ? Object.keys(sorted).map(vans => {
                         let van = sorted[vans][1]
                         let pmDue = van.lastPM + 5000 - van.currentOdometer;
-                        console.log(van)
                         if(pmDue < 0){
-                            return <div className="closeToPm" style={{backgroundColor: "rgba(255,0,0,0.6)"}} onClick={() => setAddVanMaintenanceComponent({state: true, info: van, multiCheck: false})}>
-                                <p>{van.dspVehicleId}</p>
+                            return <div className="closeToPm" style={{backgroundColor: "rgba(255,0,0,0.6)"}} >
+                                <p onClick={() => setAddVanMaintenanceComponent({state: true, info: van, multiCheck: false})}>{van.dspVehicleId}</p>
                                 <p>{pmDue.toFixed(0)} Miles</p>
                             </div>
                         } else if(pmDue > 0 && pmDue < 1000){
-                            return <div className="closeToPm" onClick={() => setAddVanMaintenanceComponent({state: true, info: van, multiCheck: false})}>
-                                <p>{van.dspVehicleId}</p>
+                            return <div className="closeToPm">
+                                <p onClick={() => setAddVanMaintenanceComponent({state: true, info: van, multiCheck: false})}>{van.dspVehicleId}</p>
                                 <p>{pmDue.toFixed(0)} Miles</p>
                             </div>
                         }

@@ -110,7 +110,9 @@ function ViewVans(props){
             {updateAllMiles ? <XcelerateAPI vans={props.vans}/> : null}
             <div className="vanSortOptions">
                 <button className={`${sortOption.tab==="dspVehicleId" ? "active" : ""}`} onClick={() => setSort({sort: sortOption.tab==="dspVehicleId" ? sortOption.sort === "ascending" ? "descending":"ascending":"ascending", tab: "dspVehicleId"})}>Name {sortOption.tab==="dspVehicleId" ? sortOption.sort === "ascending" ?<FiArrowDown className="arrow"/> : <FiArrowUp className="arrow"/> : null}</button>
+                
                 <button className={`${sortOption.tab==="currentOdometer" ? "active" : ""}`} onClick={() => setSort({sort: sortOption.tab==="currentOdometer" ?sortOption.sort === "ascending" ? "descending":"ascending":"ascending", tab: "currentOdometer"})}>Odometer {sortOption.tab==="currentOdometer" ? sortOption.sort === "ascending" ?<FiArrowDown className="arrow"/> : <FiArrowUp className="arrow"/> : null}</button>
+                
                 <button className={`${sortOption.tab==="lastPM" ? "active" : ""}`} onClick={() => setSort({sort: sortOption.tab==="lastPM" ? sortOption.sort === "ascending" ? "descending":"ascending":"ascending", tab: "lastPM"})}>PM {sortOption.tab==="lastPM" ? sortOption.sort === "ascending" ?<FiArrowDown className="arrow"/> : <FiArrowUp className="arrow"/> : null}</button>
             </div>
             {Object.keys(sorted).map(allVans=> {
@@ -119,7 +121,7 @@ function ViewVans(props){
                 if(van[1].dspVehicleId !== "Maintenance" && van[0] !== "lastUpdated"){
                     
                     return <div className="displayVans">
-                        <p>{van[1].dspVehicleId}</p>
+                        <p onClick={() => setlastPMForm({state: true, van:van[1]})}>{van[1].dspVehicleId}</p>
                         <p>{parseInt(van[1].currentOdometer)}</p>
                         <p>{pmDue ? pmDue.toFixed(0):<button onClick={() => setlastPMForm({state: true, van:van[1]})}>Update Now!</button>}</p>
                         </div>
